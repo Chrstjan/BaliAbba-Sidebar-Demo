@@ -1,0 +1,23 @@
+#cards-container .sup-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sup-container .sup-category {
+  text-align: center;
+  border-bottom: 2px solid #000;
+  padding-bottom: 0.6rem;
+  width: 100%;
+}
+
+.sup-container .sub-container {
+  border: 2px solid #333;
+  border-radius: 5px;
+  /* padding: 1rem 1rem; */
+  width: 50%;
+  height: auto;
+  text-align: center;
+}

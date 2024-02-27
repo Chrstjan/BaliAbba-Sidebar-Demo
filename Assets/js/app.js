@@ -185,12 +185,13 @@ function buildCategoryCard(subCategories) {
   subCategories.forEach((supCategory) => {
     // Create a div for each main category
     let supCategoryDiv = document.createElement("div");
-    supCategoryDiv.innerHTML = `<h2>${supCategory.supCategory}</h2>`;
+    supCategoryDiv.classList.add("sup-container");
+    supCategoryDiv.innerHTML = `<h2 class="sup-category">${supCategory.supCategory}</h2>`;
     cardsContainer.appendChild(supCategoryDiv);
 
     // Loop through the subcategories and add them as separate divs
     supCategory.subCategories.forEach((subCategory) => {
-      let categoryCard = `<div><h2>${subCategory}</h2></div>`;
+      let categoryCard = `<div class="sub-container"><h3>${subCategory}</h3></div>`;
       supCategoryDiv.innerHTML += categoryCard;
     });
   });

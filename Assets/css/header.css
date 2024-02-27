@@ -1,0 +1,33 @@
+.main-header {
+  background: #1c1c1c;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+}
+
+.main-header h1 {
+  padding-left: 0.4rem;
+}
+
+.main-nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+  padding-right: 0.4rem;
+}
+
+.main-nav #hamburger .bar {
+  margin: 3px 0;
+  width: 26px;
+  height: 8px;
+  display: block;
+  background: #fff;
+  border-radius: 6px;
+}
+
+.main-nav #main-list {
+  display: none;
+}

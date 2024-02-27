@@ -41,9 +41,110 @@ function getProductData() {
 
 //Controller Code
 function recivedCategoryData(categoryData) {
-  console.log(categoryData);
+  //console.log(categoryData);
+
+  let allCategories = categoryData;
+
+  let eletronics = [];
+  let cosmetics = [];
+  let decor = [];
+  let clothes = [];
+  let accessories = [];
+  let vehicles = [];
+  let misc = [];
+
+  allCategories.forEach((category) => {
+    switch (category) {
+      case "smartphones":
+      case "laptops": {
+        eletronics.push(category);
+        break;
+      }
+
+      case "fragrances":
+      case "skincare": {
+        cosmetics.push(category);
+        break;
+      }
+
+      case "home-decoration":
+      case "furniture":
+      case "lighting": {
+        decor.push(category);
+        break;
+      }
+
+      case "tops":
+      case "womens-dresses":
+      case "womens-shoes":
+      case "mens-shirts":
+      case "mens-shoes": {
+        clothes.push(category);
+        break;
+      }
+
+      case "mens-watches":
+      case "womens-watches":
+      case "womens-bags":
+      case "womens-jewellery":
+      case "sunglasses": {
+        accessories.push(category);
+        break;
+      }
+
+      case "automotive":
+      case "motorcycle": {
+        vehicles.push(category);
+        break;
+      }
+
+      default: {
+        misc.push(category);
+        break;
+      }
+    }
+  });
+  //console.log(eletronics);
+
+  let navigationArray = [
+    {
+      supCategory: "Eletronics",
+      subCategories: eletronics,
+    },
+    {
+      supCategory: "Cosmetics",
+      subCategories: cosmetics,
+    },
+    {
+      supCategory: "Decor",
+      subCategories: decor,
+    },
+    {
+      supCategory: "Clothes",
+      subCategories: clothes,
+    },
+    {
+      supCategory: "Accessories",
+      subCategories: accessories,
+    },
+    {
+      supCategory: "Vehicles",
+      subCategories: vehicles,
+    },
+    {
+      supCategory: "Misc",
+      subCategories: misc,
+    },
+  ];
+
+  buildNavigation(navigationArray);
 }
 
 function recivedProductData(productData) {
   console.log(productData);
+}
+
+//View Code
+function buildNavigation(navigationData) {
+  console.log(navigationData);
 }

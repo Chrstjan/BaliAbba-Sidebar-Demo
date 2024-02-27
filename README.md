@@ -1,2 +1,2 @@
-# Html-Boilerplate
-A Html Boilerplate
+# BaliAbba Sidebar demo 
+

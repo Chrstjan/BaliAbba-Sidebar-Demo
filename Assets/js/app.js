@@ -180,11 +180,19 @@ function buildSidebar(navigationData) {
 function buildCategoryCard(subCategories) {
   clearContainer();
 
-  console.log(subCategories);
+  //console.log(subCategories);
 
-  subCategories.forEach((subCategory) => {
-    let categoryCard = `<div><h2>${subCategory.subCategories}</h2></div>`;
-    cardsContainer.innerHTML += categoryCard;
+  subCategories.forEach((supCategory) => {
+    // Create a div for each main category
+    let supCategoryDiv = document.createElement("div");
+    supCategoryDiv.innerHTML = `<h2>${supCategory.supCategory}</h2>`;
+    cardsContainer.appendChild(supCategoryDiv);
+
+    // Loop through the subcategories and add them as separate divs
+    supCategory.subCategories.forEach((subCategory) => {
+      let categoryCard = `<div><h2>${subCategory}</h2></div>`;
+      supCategoryDiv.innerHTML += categoryCard;
+    });
   });
 }
 

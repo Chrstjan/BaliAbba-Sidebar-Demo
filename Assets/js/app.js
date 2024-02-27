@@ -8,6 +8,7 @@ hamburgerBtn.addEventListener("click", () => {
 });
 
 let navigationArray = [];
+let allProducts = null;
 
 //Calling functions
 getCategoryData();
@@ -148,7 +149,10 @@ function recivedCategoryData(categoryData) {
 }
 
 function recivedProductData(productData) {
-  console.log(productData);
+  //console.log(productData);
+  allProducts = productData.products;
+
+  //buildProductCard(allProducts);
 }
 
 function navCallback(clickedCategory) {
@@ -162,6 +166,18 @@ function navCallback(clickedCategory) {
   });
   //console.log(clickedSubCategoryArray);
   buildCategoryCard(clickedSubCategoryArray);
+}
+
+function categoryCallback(clickedSubCategory) {
+  //console.log(clickedSubCategory);
+  let clickedProductCategory = [];
+  allProducts.forEach((product) => {
+    if (product.category == clickedSubCategory) {
+      clickedProductCategory.push(product);
+      // console.log(product);
+    }
+  });
+  buildProductCard(clickedProductCategory);
 }
 
 //View Code
@@ -183,17 +199,47 @@ function buildCategoryCard(subCategories) {
   //console.log(subCategories);
 
   subCategories.forEach((supCategory) => {
-    // Create a div for each main category
     let supCategoryDiv = document.createElement("div");
     supCategoryDiv.classList.add("sup-container");
     supCategoryDiv.innerHTML = `<h2 class="sup-category">${supCategory.supCategory}</h2>`;
     cardsContainer.appendChild(supCategoryDiv);
 
-    // Loop through the subcategories and add them as separate divs
     supCategory.subCategories.forEach((subCategory) => {
-      let categoryCard = `<div class="sub-container"><h3>${subCategory}</h3></div>`;
+      let categoryCard = `<div class="sub-container"><button onclick="categoryCallback('${subCategory}')">${subCategory}</button></div>`;
       supCategoryDiv.innerHTML += categoryCard;
     });
+  });
+}
+
+function buildProductCard(products) {
+  clearContainer();
+  console.log(products);
+
+  products.forEach((product) => {
+    let productCard = `
+      <figure>
+        <header><h2>${product.title}</h2></header>
+        <img src="${product.thumbnail}" alt="${product.title}"/>
+        <figcaption>
+          <span>
+            <span>
+              <p>${product.rating}</p>
+              <p>&starf;</p>
+            </span>
+          </span>
+          <span>
+            <h4>${product.price} $</h4>
+            <button>Add to cart</button>
+          </span>
+          <h3>${product.description}</h3>
+          <footer>
+            <h5>${product.stock} in stock</h5>
+          </footer>
+        </figcaption>
+      </figure>
+  `;
+
+    cardsContainer.innerHTML += productCard;
   });
 }
 

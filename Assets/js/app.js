@@ -1,10 +1,13 @@
 //GLOBALS
 const hamburgerBtn = document.getElementById("hamburger");
 const mainNavElement = document.getElementById("main-list");
+const cardsContainer = document.getElementById("cards-container");
 
 hamburgerBtn.addEventListener("click", () => {
   mainNavElement.classList.toggle("show-sidebar");
 });
+
+let navigationArray = [];
 
 //Calling functions
 getCategoryData();
@@ -110,7 +113,7 @@ function recivedCategoryData(categoryData) {
   });
   //console.log(eletronics);
 
-  let navigationArray = [
+  navigationArray = [
     {
       supCategory: "Eletronics",
       subCategories: eletronics,
@@ -149,7 +152,16 @@ function recivedProductData(productData) {
 }
 
 function navCallback(clickedCategory) {
-  console.log(clickedCategory);
+  //console.log(clickedCategory);
+
+  let clickedSubCategoryArray = [];
+  navigationArray.forEach((subCategory) => {
+    if (subCategory.subCategories == clickedCategory) {
+      clickedSubCategoryArray.push(subCategory);
+    }
+  });
+  //console.log(clickedSubCategoryArray);
+  buildCategoryCard(clickedSubCategoryArray);
 }
 
 //View Code
@@ -158,9 +170,24 @@ function buildSidebar(navigationData) {
   navigationData.forEach((supCategory) => {
     let sidebarCategories = `
     <li class="sup-category">
-        <button class="sidebar-category" onclick="navCallback('${supCategory.supCategory}')">${supCategory.supCategory}</button>
+        <button class="sidebar-category" onclick="navCallback('${supCategory.subCategories}')">${supCategory.supCategory}</button>
     </li>`;
 
     mainNavElement.innerHTML += sidebarCategories;
   });
+}
+
+function buildCategoryCard(subCategories) {
+  clearContainer();
+
+  console.log(subCategories);
+
+  subCategories.forEach((subCategory) => {
+    let categoryCard = `<div><h2>${subCategory.subCategories}</h2></div>`;
+    cardsContainer.innerHTML += categoryCard;
+  });
+}
+
+function clearContainer() {
+  cardsContainer.innerHTML = "";
 }

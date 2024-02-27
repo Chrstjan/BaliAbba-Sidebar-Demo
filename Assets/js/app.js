@@ -2,6 +2,10 @@
 const hamburgerBtn = document.getElementById("hamburger");
 const mainNavElement = document.getElementById("main-list");
 
+hamburgerBtn.addEventListener("click", () => {
+  mainNavElement.classList.toggle("show-sidebar");
+});
+
 //Calling functions
 getCategoryData();
 getProductData();
@@ -137,14 +141,26 @@ function recivedCategoryData(categoryData) {
     },
   ];
 
-  buildNavigation(navigationArray);
+  buildSidebar(navigationArray);
 }
 
 function recivedProductData(productData) {
   console.log(productData);
 }
 
+function navCallback(clickedCategory) {
+  console.log(clickedCategory);
+}
+
 //View Code
-function buildNavigation(navigationData) {
-  console.log(navigationData);
+function buildSidebar(navigationData) {
+  //console.log(navigationData);
+  navigationData.forEach((supCategory) => {
+    let sidebarCategories = `
+    <li class="sup-category">
+        <button class="sidebar-category" onclick="navCallback('${supCategory.supCategory}')">${supCategory.supCategory}</button>
+    </li>`;
+
+    mainNavElement.innerHTML += sidebarCategories;
+  });
 }
